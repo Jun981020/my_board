@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+  <meta charset="UTF-8">
+  <title>LoginForm</title>
+</head>
+<body>
+<div class="container w-75">
+  <h2 class="text-center mt-5 mb-5"><b> 로그인 해주세요!!</b> </h2>
+  <form method="post" action="/member/loginAction">
+    <div class="d-flex flex-row justify-content-around mt-5 pt-5 mb-5">
+    <div class="row g-3 align-items-center">
+      <div class="col-auto">
+        <label for="member_id" class="col-form-label">NICKNAME</label>
+      </div>
+      <div class="col-auto">
+        <input type="text" id="member_id" name="member_id" class="form-control" aria-describedby="passwordHelpInline">
+      </div>
+      <div class="col-auto">
+      </div>
+      <div class="row g-3 align-items-center">
+        <div class="col-auto">
+          <label for="member_password" class="col-form-label">Password</label>
+        </div>
+        <div class="col-auto">
+          <input type="password" id="member_password"  name="member_password" class="form-control" aria-describedby="passwordHelpInline">
+        </div>
+        <div class="col-auto">
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-secondary btn-lg">로그인!!</button>
+    </div>
+  </form>
+  <div class="text-center mt-5">
+    혹시 회원이 아니신가요? <b><a href="joinForm">(회원가입 바로가기)</a></b>
+  </div>
+</div>
+</body>
+</html>

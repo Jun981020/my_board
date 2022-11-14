@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+  <meta charset="UTF-8">
+  <title>JoinForm</title>
+</head>
+<body>
+<div class="container w-75">
+  <h2 class="text-center mt-5 mb-5"><b> 회원가입중....</b> </h2>
+  <form action="/member/joinAction" method="post">
+  <div class="d-flex flex-row justify-content-around mt-5 pt-5 mb-5">
+    <div class="row g-3 align-items-center">
+      <div class="col-auto">
+        <label for="nickname" class="col-form-label">NICKNAME</label>
+      </div>
+      <div class="col-auto">
+        <input type="text" id="nickname" name="nickname" class="form-control" aria-describedby="passwordHelpInline">
+      </div>
+      <div class="col-auto">
+      </div>
+      <div class="row g-3 align-items-center">
+        <div class="col-auto">
+          <label for="member_password" class="col-form-label">Password</label>
+        </div>
+        <div class="col-auto">
+          <input type="password" id="member_password"  name="password" class="form-control" aria-describedby="passwordHelpInline">
+        </div>
+        <div class="col-auto">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt-5">
+    <button type="submit" class="btn btn-secondary btn-lg" style="width:200px height:80px">회원가입</button>
+  </div>
+  </form>
+</div>
+</body>
+</html>
