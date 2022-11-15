@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -18,11 +20,12 @@ public class MemberService {
         return m.getId();
     }
 
-    public void login(Member m){
-        boolean result = memberRepository.validateNickName(m);
-
-
-
+    public String login(Member m){
+        Member member = memberRepository.checkUser(m);
+        if(member.getNickname().equals(m.getNickname()) && member.getPassword().equals(m.getPassword())){
+            return member.getNickname();
+        }
+        return null;
     }
 
 

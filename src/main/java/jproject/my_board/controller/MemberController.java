@@ -5,6 +5,7 @@ import jproject.my_board.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -32,9 +33,10 @@ public class MemberController {
         return "redirect:/main";
     }
     @PostMapping("/member/loginAction")
-    public String loginAction(Member m){
-
-        return "redirect:/main";
+    public String loginAction(Member m, Model model){
+        String result = memberService.login(m);
+        model.addAttribute("userCheck",result);
+        return "main";
     }
 
 }

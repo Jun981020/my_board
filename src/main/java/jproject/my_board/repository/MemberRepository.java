@@ -21,14 +21,13 @@ public class MemberRepository {
         return em.find(Member.class, id);
     }
 
-    //DB에서 회원이름 조회
-    public boolean validateNickName(Member m){
-        List<Member> resultList = em.createQuery("select m Member m where m.nickname = :name", Member.class)
-                .setParameter("name",m.getNickname())
-                .getResultList();
-        if(resultList.isEmpty()){
-            return true;
-        }return false;
-    }
+   public Member checkUser(Member m){
+       Object singleResult = em.createQuery("select m from Member m where m.nickname = :nickname and m.password = :password")
+               .setParameter("nickname", m.getNickname())
+               .setParameter("password", m.getPassword())
+               .getSingleResult();
+       return (Member) singleResult;
+
+   }
 
 }
