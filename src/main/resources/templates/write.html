@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+  <meta charset="UTF-8">
+  <title>Write</title>
+</head>
+<body>
+<div class="container w-75">
+  <h2 class="text-center mt-5"> 게시글을 작성하세요! </h2>
+  <form action="/board/writeAction" >
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">제목을 입력해주세요</label>
+    <input type="text" class="form-group w-100" name="title" >
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">게시글을 작성해주세요!</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"></textarea>
+  </div>
+  <select name="private_content">
+    <option value="0">공개</option>
+    <option value="1">비공개</option>
+  </select>
+  <button class="btn btn-secondary btn-lg float-right">작성!</button>
+  </form>
+
+</div>
+</body>
+</html>

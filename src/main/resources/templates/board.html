@@ -16,10 +16,16 @@
         <td>등록날짜</td>
         <td>비밀글</td>
       </tr>
-      <tr>
+      <tr th:each="item:${list}">
+        <td th:value="{item.id}"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
     </table>
   </div>
+  <button class="btn btn-secondary btn-sm float-right"><a href="/board/write" onclick="location.href='/board/write'">게시글 작성</a></button>
 </div>
 </body>
 </html>
