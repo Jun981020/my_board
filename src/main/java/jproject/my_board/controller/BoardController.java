@@ -28,8 +28,8 @@ public class BoardController {
         return "write";
     }
     @PostMapping("/board/writeAction")
-    public String writeAction(){
-
+    public String writeAction(Board board){
+        boardService.insertContent(board);
         return "main";
     }
 
