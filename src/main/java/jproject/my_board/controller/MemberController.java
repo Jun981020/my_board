@@ -34,8 +34,9 @@ public class MemberController {
     }
     @PostMapping("/member/loginAction")
     public String loginAction(Member m, Model model){
-        String result = memberService.login(m);
+        Member result = memberService.login(m);
         model.addAttribute("userCheck",result);
+        log.info("call login Action");
         return "main";
     }
 

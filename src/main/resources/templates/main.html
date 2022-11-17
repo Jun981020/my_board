@@ -7,8 +7,11 @@
 <body>
     <div class="container w-75">
         <h2 class="text-center mt-5"> 신사들의 게시판 </h2>
-        <span class="mt-5 mb-5 d-flex flex-row-reverse" th:text="${userCheck}">
-            로그인하지 않으셧네요...ㅠㅠ
+        <span class="mt-5 mb-5 d-flex flex-row-reverse" th:if="${userCheck != null}" >
+            [[${userCheck.nickname}]] 님 환영합니다!!
+        </span>
+        <span class="mt-5 mb-5 d-flex flex-row-reverse" th:if="${userCheck == null}">
+            로그인하지 않으셧네요ㅠㅠ...
         </span>
         <div class="d-flex flex-row justify-content-around mt-3 mb-5">
                 <button type="button" class="btn btn-primary p-2 btn-lg" style="width:170px" onclick="location.href='member/loginform'">

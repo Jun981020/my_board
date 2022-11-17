@@ -17,4 +17,13 @@ public class Member {
     private String password;
     @OneToMany
     private List<Board> boards = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", nickname='" + nickname + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
