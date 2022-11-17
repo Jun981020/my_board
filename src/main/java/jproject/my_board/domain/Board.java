@@ -1,5 +1,6 @@
 package jproject.my_board.domain;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,7 +23,10 @@ public class Board {
     private LocalDateTime update_at;
     private int private_content;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    @NotNull
     private Member member;
+
 
 
 }

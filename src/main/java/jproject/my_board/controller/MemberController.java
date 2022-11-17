@@ -8,6 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @Slf4j
@@ -33,11 +38,18 @@ public class MemberController {
         return "redirect:/main";
     }
     @PostMapping("/member/loginAction")
-    public String loginAction(Member m, Model model){
+    public String loginAction(Member m, Model model, HttpServletRequest request, RedirectAttributes rdt){
+        log.info("call loginAction");
+        HttpSession session = request.getSession();
         Member result = memberService.login(m);
-        model.addAttribute("userCheck",result);
-        log.info("call login Action");
-        return "main";
+        if(request == null){
+            rdt.addFlashAttribute("fail","아이디 또는 비밀번호가 잘못되었습니다.");
+            return "redirect:/member/loginForm";
+        }else{
+            session.setAttribute("user",result);
+            return "redirect:/main";
+        }
+
     }
 
 }

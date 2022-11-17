@@ -1,6 +1,7 @@
 package jproject.my_board.controller;
 
 import jproject.my_board.domain.Board;
+import jproject.my_board.domain.Member;
 import jproject.my_board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -27,9 +30,14 @@ public class BoardController {
     public String write(){
         return "write";
     }
+
     @PostMapping("/board/writeAction")
-    public String writeAction(Board board){
+    public String writeAction(Board board, HttpServletRequest request){
+        Object member = request.getSession().getAttribute("user");
+        Member m = (Member) member;
+        board.setMember(m);
         boardService.insertContent(board);
+        log.info("call board/writeAction");
         return "main";
     }
 

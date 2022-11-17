@@ -7,10 +7,10 @@
 <body>
     <div class="container w-75">
         <h2 class="text-center mt-5"> 신사들의 게시판 </h2>
-        <span class="mt-5 mb-5 d-flex flex-row-reverse" th:if="${userCheck != null}" >
-            [[${userCheck.nickname}]] 님 환영합니다!!
+        <span class="mt-5 mb-5 d-flex flex-row-reverse" th:if="${session.user != null}" >
+            [[${session.user.nickname}]] 님 환영합니다!!
         </span>
-        <span class="mt-5 mb-5 d-flex flex-row-reverse" th:if="${userCheck == null}">
+        <span class="mt-5 mb-5 d-flex flex-row-reverse" th:if="${session.user == null}">
             로그인하지 않으셧네요ㅠㅠ...
         </span>
         <div class="d-flex flex-row justify-content-around mt-3 mb-5">
