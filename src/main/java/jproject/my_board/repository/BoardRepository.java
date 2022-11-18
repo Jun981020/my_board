@@ -17,6 +17,9 @@ public class BoardRepository {
         return em.createQuery("select b from Board b", Board.class).getResultList();
     }
 
+//    public String getMemberNickname(){
+//        em.createQuery("select m.nickname from M")
+//    }
     public void save(Board b){
         em.persist(b);
     }

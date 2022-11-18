@@ -11,12 +11,12 @@ import java.util.List;
 @Getter
 @Setter
 public class Member {
-    @Id @GeneratedValue
-    @Column(name = "member_id")
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id",unique = true)
     private Long id;
     private String nickname;
     private String password;
-    @OneToMany
+    @OneToMany(mappedBy = "member")
     private List<Board> boards = new ArrayList<>();
 
     @Override

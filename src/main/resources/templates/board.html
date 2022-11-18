@@ -17,11 +17,12 @@
         <td>비밀글</td>
       </tr>
       <tr th:each="item:${list}">
-        <td th:value="{item.id}"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.title}"></td>
+        <td th:text="${item.create_at}"></td>
+        <td th:if="${item.private_content == 0}" th:text="공개글"></td>
+        <td th:if="${item.private_content == 1}" th:text="비밀글"></td>
       </tr>
     </table>
   </div>

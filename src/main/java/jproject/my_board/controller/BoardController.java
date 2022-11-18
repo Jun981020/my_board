@@ -23,6 +23,8 @@ public class BoardController {
 
     @GetMapping("/board/main")
     public String main(Model model){
+        List<Board> boardList = boardService.getBoardList();
+        model.addAttribute("list",boardList);
         return "board";
     }
 
@@ -38,7 +40,7 @@ public class BoardController {
         board.setMember(m);
         boardService.insertContent(board);
         log.info("call board/writeAction");
-        return "main";
+        return "redirect:/main";
     }
 
 

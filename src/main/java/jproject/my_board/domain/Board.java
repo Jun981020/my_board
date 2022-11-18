@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 public class Board {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_id")
     private Long id;
 
@@ -28,5 +28,16 @@ public class Board {
     private Member member;
 
 
-
+    @Override
+    public String toString() {
+        return "Board{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", create_at=" + create_at +
+                ", update_at=" + update_at +
+                ", private_content=" + private_content +
+                ", member=" + member +
+                '}';
+    }
 }
