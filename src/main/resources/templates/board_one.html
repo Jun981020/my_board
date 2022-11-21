@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+  <meta charset="UTF-8">
+  <title>Board_One</title>
+</head>
+<body>
+<div class="container w-75">
+  <h2 class="text-center mt-5 mb-5"><b>게시글 내용</b> </h2>
+  <div class="d-flex flex-row justify-content-around mt-5 pt-5 mb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 border" th:text="${board.title}">
+        </div>
+        <div class="col-12 border" th:text="${board.content}">
+          내용입니다.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

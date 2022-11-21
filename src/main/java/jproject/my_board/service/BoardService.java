@@ -29,4 +29,8 @@ public class BoardService {
         board.setCreate_at(LocalDateTime.now());
         boardRepository.save(board);
     }
+    public Board getOneBoard(Long id){
+        Board one = boardRepository.findOne(id);
+        return one;
+    }
 }

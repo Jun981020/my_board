@@ -23,7 +23,7 @@ public class Board {
     private LocalDateTime update_at;
     private int private_content;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "MEMBER_ID")
     @NotNull
     private Member member;
 

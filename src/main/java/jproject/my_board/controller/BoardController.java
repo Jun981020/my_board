@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,6 +42,13 @@ public class BoardController {
         boardService.insertContent(board);
         log.info("call board/writeAction");
         return "redirect:/main";
+    }
+    @GetMapping("/board/board_one/{id}")
+    public String board_one(@PathVariable("id")Long id,Model model){
+        Board oneBoard = boardService.getOneBoard(id);
+        model.addAttribute("board",oneBoard);
+        log.info("call board_one");
+        return "board_one";
     }
 
 
