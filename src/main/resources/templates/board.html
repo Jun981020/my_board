@@ -19,8 +19,13 @@
       <tr th:each="item:${list}">
         <td th:text="${item.id}"></td>
         <td th:text="${item.member.nickname}"></td>
-          <td th:text="${item.title}" th:onclick="|location.href='@{/board/board_one(id=${item.id})}'|">
-          </td>
+        <td>
+          <a
+             th:href="@{/board/board_one/{id}(id = ${item.id})}"
+             th:text="${item.title}">
+            카테고리
+          </a>
+        </td>
         <td th:text="${item.create_at}"></td>
         <td th:if="${item.private_content == 0}" th:text="공개글"></td>
         <td th:if="${item.private_content == 1}" th:text="비밀글"></td>

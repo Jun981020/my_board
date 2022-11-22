@@ -44,8 +44,9 @@ public class BoardController {
         return "redirect:/main";
     }
     @GetMapping("/board/board_one/{id}")
-    public String board_one(@PathVariable("id")Long id,Model model){
-        Board oneBoard = boardService.getOneBoard(id);
+    public String board_one(@PathVariable("id")int id,Model model){
+        Long num = Long.valueOf(id);
+        Board oneBoard = boardService.getOneBoard(num);
         model.addAttribute("board",oneBoard);
         log.info("call board_one");
         return "board_one";
