@@ -16,9 +16,7 @@ public class Member {
     @Column(name = "MEMBER_ID")
     private Long id;
     @Column(unique = true)
-    @NotNull
     private String nickname;
-    @NotNull
     private String password;
     //우선은 단반향 매핑으로 member 객체에서 boards를 알필요는 없다 판단.
 //    @OneToMany(mappedBy = "member")

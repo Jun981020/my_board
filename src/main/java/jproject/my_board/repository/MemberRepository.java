@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
@@ -32,8 +31,10 @@ public class MemberRepository {
                .getSingleResult();
        return (Member) singleResult;
    }
-   public List<Member> finAll(){
-        return em.createQuery("select m from Member m",Member.class).getResultList();
+   public List<Member> findByNickname(String name){
+        return em.createQuery("select m from Member m where m.nickname = :name",Member.class)
+                .setParameter("name",name)
+                .getResultList();
    }
 
 }

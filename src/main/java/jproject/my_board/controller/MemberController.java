@@ -1,6 +1,7 @@
 package jproject.my_board.controller;
 
 import jproject.my_board.domain.Member;
+import jproject.my_board.exception.MemberFormValidException;
 import jproject.my_board.exception.NotUniqueNickNameException;
 import jproject.my_board.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -39,17 +40,32 @@ public class MemberController {
         return "joinForm";
     }
     @PostMapping("/member/joinAction")
-    public String joinAction(@Valid MemberForm form, BindingResult rs){
+    public String joinAction(@Valid MemberForm form,BindingResult brs){
         log.info("joinAction call");
-        if(rs.hasErrors()){
-            log.info("same nickname");
-            return "/member/joinForm";
+        if(brs.hasErrors()){
+            String defaultMessage = brs.getFieldError().getDefaultMessage();
+            System.out.println("defaultMessage = " + defaultMessage);
+            throw new MemberFormValidException(defaultMessage);
+        }else{
+            Member m = new Member();
+            m.setNickname(form.getNickname());
+            m.setPassword(form.getPassword());
+            memberService.join(m);
+            return "redirect:/main";
         }
-        Member m = new Member();
-        m.setNickname(form.getNickname());
-        m.setPassword(form.getPassword());
-        memberService.join(m);
-        return "redirect:/main";
+    }
+    @ExceptionHandler(NotUniqueNickNameException.class)
+    public String sameNickname(String message){
+
+        log.info("call sameNickname ExceptionHandler");
+        return "redirect:/member/joinForm";
+    }
+    @ExceptionHandler(MemberFormValidException.class)
+    public String memberFormValid(String message){
+        log.info("call memberFormValid ExceptionHandler");
+        System.out.println("message = " + message);
+        return "redirect:/member/joinForm";
+
     }
     @PostMapping("/member/loginAction")
     public String loginAction(Member m, Model model, HttpServletRequest request, RedirectAttributes rdt){

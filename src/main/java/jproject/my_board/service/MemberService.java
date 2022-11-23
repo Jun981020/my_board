@@ -21,12 +21,8 @@ public class MemberService {
     @Transactional
     //회원가입
     public void join(Member m){
-        boolean result = checkValidateUniqueNickName(m.getNickname());
-        if(result){
-            memberRepository.save(m);
-        }else{
-            throw new NotUniqueNickNameException("same nickname in database");
-        }
+        checkValidateUniqueNickName(m.getNickname());
+        memberRepository.save(m);
     }
     //회원 로그인
     public Member login(Member m){
@@ -35,13 +31,10 @@ public class MemberService {
         return member;
     }
 
-    public boolean checkValidateUniqueNickName(String nickName){
-        List<Member> members = memberRepository.finAll();
-        long count = members.stream().map(Member::getNickname).filter(s -> s.equals(nickName)).count();
-        if(count == 0){
-            return true;
-        }else{
-           return false;
+    public void checkValidateUniqueNickName(String nickName){
+        List<Member> members = memberRepository.findByNickname(nickName);
+        if(!members.isEmpty()){
+            throw new NotUniqueNickNameException("same nickname in database");
         }
     }
 
