@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -48,7 +47,7 @@ public class BoardController {
         Long num = Long.valueOf(id);
         Board oneBoard = boardService.getOneBoard(num);
         model.addAttribute("board",oneBoard);
-        String user = boardService.getOneMemberOfBoardId(num);
+        String user = boardService.getOneMemberNicknameOfBoardId(num);
         model.addAttribute("user",user);
         log.info("call board_one");
         return "board_one";

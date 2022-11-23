@@ -17,7 +17,9 @@ public class Board {
     @Column(name = "board_id")
     private Long id;
 
+    @NotNull
     private String title;
+    @NotNull
     private String content;
     private LocalDateTime create_at;
     private LocalDateTime update_at;

@@ -1,6 +1,7 @@
 package jproject.my_board.service;
 
 import jproject.my_board.domain.Member;
+import jproject.my_board.exception.NotUniqueNickNameException;
 import jproject.my_board.repository.MemberRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,8 +26,8 @@ class MemberServiceTest {
         Member member = new Member();
         member.setPassword("1234");
         memberRepository.save(member);
-        Long id = memberService.join(member);
-        Assertions.assertEquals(member,memberRepository.findOne(id));
+        memberService.join(member);
+//        Assertions.assertEquals(member,memberRepository.findOne(id));
     }
 
     @Test
@@ -37,6 +38,22 @@ class MemberServiceTest {
         m.setPassword("1234");
         Member getMember = memberRepository.checkUser(m);
         assertThat(m.getNickname()).isEqualTo(getMember.getNickname());
+    }
+    @Test
+    public void checkSameNickName(){
+        Member m1 = new Member();
+        m1.setNickname("qwer");
+        m1.setPassword("1234");
+        memberRepository.save(m1);
+
+        Member m2 = new Member();
+        m2.setNickname("qwer");
+        m2.setPassword("1234");
+
+        assertThrows(NotUniqueNickNameException.class,() ->
+                        memberService.join(m2)
+                );
+
     }
 
 

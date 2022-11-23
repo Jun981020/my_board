@@ -1,5 +1,6 @@
 package jproject.my_board.service;
 
+import jproject.my_board.controller.MemberForm;
 import jproject.my_board.domain.Board;
 import jproject.my_board.domain.Member;
 import jproject.my_board.repository.BoardRepository;
