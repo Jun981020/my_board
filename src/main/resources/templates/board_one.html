@@ -7,16 +7,20 @@
 <body>
 <div class="container w-75">
   <h2 class="text-center mt-5 mb-5"><b>게시글 내용</b> </h2>
-  <div class="d-flex flex-row justify-content-around mt-5 pt-5 mb-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 border" th:text="${board.title}">
+  <div class="container">
+    <div class="d-flex flex-row-reverse">
+        작성자 : [[${user}]]
+    </div>
+    <div class="d-flex flex-column">
+        <div class="border p-2 text-center w-auto" th:text="${board.title}">
         </div>
-        <div class="col-12 border" th:text="${board.content}">
+        <div class="border p-2 w-auto" th:text="${board.content}" style="height:400px">
           내용입니다.
         </div>
       </div>
     </div>
+  <div class="float-right pr-5 pt-5" th:text="${#temporals.format(board.create_at,'yyyy-MM-dd')}">
+    작성날짜
   </div>
 </div>
 </body>

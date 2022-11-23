@@ -48,6 +48,8 @@ public class BoardController {
         Long num = Long.valueOf(id);
         Board oneBoard = boardService.getOneBoard(num);
         model.addAttribute("board",oneBoard);
+        String user = boardService.getOneMemberOfBoardId(num);
+        model.addAttribute("user",user);
         log.info("call board_one");
         return "board_one";
     }

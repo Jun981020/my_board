@@ -1,6 +1,7 @@
 package jproject.my_board.service;
 
 import jproject.my_board.domain.Board;
+import jproject.my_board.domain.Member;
 import jproject.my_board.dto.BoardDto;
 import jproject.my_board.repository.BoardRepository;
 import jproject.my_board.repository.MemberRepository;
@@ -32,5 +33,9 @@ public class BoardService {
     public Board getOneBoard(Long id){
         Board one = boardRepository.findOne(id);
         return one;
+    }
+
+    public String getOneMemberOfBoardId(Long id){
+        return boardRepository.findMember(id);
     }
 }
