@@ -28,13 +28,15 @@
         <div class="col-auto">
         </div>
       </div>
-      <!--server 에서 exception 이 날라왔을때 출력-->
 
     </div>
   </div>
   <div class="text-center mt-5">
     <button type="submit" class="btn btn-secondary btn-lg" style="width:200px height:80px">회원가입</button>
   </div>
+    <div th:text="${fail}" class="text-center mt-5" style="color:red">
+
+    </div>
   </form>
 </div>
 </body>

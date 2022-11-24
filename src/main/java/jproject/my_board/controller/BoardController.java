@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -34,10 +35,15 @@ public class BoardController {
     }
 
     @PostMapping("/board/writeAction")
-    public String writeAction(Board board, HttpServletRequest request){
+    public String writeAction(BoardForm form, HttpServletRequest request){
         Object member = request.getSession().getAttribute("user");
         Member m = (Member) member;
+        Board board  = new Board();
+        board.setTitle(form.getTitle());
+        board.setContent(form.getContent());
         board.setMember(m);
+        board.setPrivate_content(form.getPrivate_content());
+        board.setCreate_at(LocalDateTime.now());
         boardService.insertContent(board);
         log.info("call board/writeAction");
         return "redirect:/main";

@@ -28,7 +28,6 @@ public class BoardService {
     @Transactional
     //게시글 추가
     public void insertContent(Board board) {
-        board.setCreate_at(LocalDateTime.now());
         boardRepository.save(board);
     }
     //게시글 하나 조회

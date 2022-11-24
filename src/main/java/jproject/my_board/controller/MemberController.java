@@ -2,25 +2,22 @@ package jproject.my_board.controller;
 
 import jproject.my_board.domain.Member;
 import jproject.my_board.exception.MemberFormValidException;
+import jproject.my_board.exception.NotFindUserException;
 import jproject.my_board.exception.NotUniqueNickNameException;
 import jproject.my_board.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @Slf4j
@@ -40,11 +37,11 @@ public class MemberController {
         return "joinForm";
     }
     @PostMapping("/member/joinAction")
-    public String joinAction(@Valid MemberForm form,BindingResult brs){
+    public String joinAction(@Valid MemberJoinFrom form, BindingResult brs){
         log.info("joinAction call");
         if(brs.hasErrors()){
             String defaultMessage = brs.getFieldError().getDefaultMessage();
-            System.out.println("defaultMessage = " + defaultMessage);
+            log.info("error message : " + defaultMessage);
             throw new MemberFormValidException(defaultMessage);
         }else{
             Member m = new Member();
@@ -54,31 +51,41 @@ public class MemberController {
             return "redirect:/main";
         }
     }
-    @ExceptionHandler(NotUniqueNickNameException.class)
-    public String sameNickname(String message){
-
+    @ExceptionHandler({NotUniqueNickNameException.class})
+    public String sameNickname(RedirectAttributes rdt){
+        String message = "이미가입한 닉네임 입니다. 다른 닉네임을 입력해주세요";
+        rdt.addFlashAttribute("fail",message);
         log.info("call sameNickname ExceptionHandler");
         return "redirect:/member/joinForm";
     }
     @ExceptionHandler(MemberFormValidException.class)
-    public String memberFormValid(String message){
+    public String memberFormValid(RedirectAttributes rdt){
         log.info("call memberFormValid ExceptionHandler");
-        System.out.println("message = " + message);
+        String message = "회원가입 양식에 맞게 입력해주세요(회원이름은 필수입니다.),(비밀번호는 5자이상 20자 이하여야 합니다.)";
+        rdt.addFlashAttribute("fail",message);
         return "redirect:/member/joinForm";
 
     }
     @PostMapping("/member/loginAction")
-    public String loginAction(Member m, Model model, HttpServletRequest request, RedirectAttributes rdt){
+    public String loginAction(@Valid Member m, HttpServletRequest request, RedirectAttributes rdt, BindingResult brs){
         log.info("call loginAction");
-        HttpSession session = request.getSession();
-        Member result = memberService.login(m);
-        if(request == null){
-            rdt.addFlashAttribute("fail","아이디 또는 비밀번호가 잘못되었습니다.");
-            return "redirect:/member/loginForm";
+        if(brs.hasErrors()){
+            String message = brs.getFieldError().getDefaultMessage();
+            log.info("error message: " + message);
+            throw new NoResultException(message);
         }else{
+            HttpSession session = request.getSession();
+            Member result = memberService.login(m);
             session.setAttribute("user",result);
             return "redirect:/main";
         }
+    }
+    @ExceptionHandler(NoResultException.class)
+    public String notFindUserException(RedirectAttributes rdt){
+        log.info("noResultException Handler call");
+        String message = "아이디 또는 비밀번호가 잘못되었습니다.";
+        rdt.addFlashAttribute("fail",message);
+        return "redirect:/member/loginform";
     }
     @GetMapping("/member/logoutAction")
     public String logoutAction(HttpServletRequest request){

@@ -2,13 +2,12 @@ package jproject.my_board.controller;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.validation.constraints.*;
 
 @Getter
 @Setter
-public class MemberForm {
+public class MemberJoinFrom {
 
     @NotEmpty(message = "회원이름은 필수입니다.")
     private String nickname;
