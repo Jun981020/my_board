@@ -46,7 +46,7 @@ public class BoardController {
         board.setCreate_at(LocalDateTime.now());
         boardService.insertContent(board);
         log.info("call board/writeAction");
-        return "redirect:/main";
+        return "redirect:/board/main";
     }
     @GetMapping("/board/board_one/{id}")
     public String board_one(@PathVariable("id")int id,Model model){

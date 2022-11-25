@@ -6,7 +6,8 @@
 </head>
 <body>
 <div class="container w-75">
-  <h2 class="text-center mt-5 mb-5"><b>게시글 내용</b> </h2>
+    <div th:replace="fragments/header :: nav" class="w-100"></div>
+    <h2 class="text-center mt-5 mb-5"><b>게시글 내용</b> </h2>
   <div class="container">
     <div class="d-flex flex-row-reverse">
         작성자 : [[${user}]]

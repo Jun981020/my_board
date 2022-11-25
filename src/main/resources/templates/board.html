@@ -6,6 +6,7 @@
 </head>
 <body>
 <div class="container w-75">
+  <div th:replace="fragments/header :: nav" class="w-100"></div>
   <h2 class="text-center mt-5 mb-5"><b>오늘도 신나는 사람들의 소리!!</b> </h2>
   <div class="d-flex flex-row justify-content-around mt-5 pt-5 mb-5">
     <table class="table table-striped">
@@ -32,7 +33,7 @@
       </tr>
     </table>
   </div>
-  <button class="btn btn-secondary btn-sm float-right"><a href="/board/write" onclick="location.href='/board/write'">게시글 작성</a></button>
+  <button class="btn btn-secondary btn-lg float-right" onclick="location.href='/board/write'">게시글 작성</button>
 </div>
 </body>
 </html>
