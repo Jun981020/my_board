@@ -38,8 +38,5 @@ public class MemberService {
         }
     }
 
-    public void checkNotFindUser(Member m){
-
-    }
 
 }

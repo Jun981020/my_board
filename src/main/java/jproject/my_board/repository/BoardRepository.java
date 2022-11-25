@@ -1,7 +1,6 @@
 package jproject.my_board.repository;
 
 import jproject.my_board.domain.Board;
-import jproject.my_board.domain.Member;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

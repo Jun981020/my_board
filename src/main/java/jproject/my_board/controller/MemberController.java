@@ -2,7 +2,6 @@ package jproject.my_board.controller;
 
 import jproject.my_board.domain.Member;
 import jproject.my_board.exception.MemberFormValidException;
-import jproject.my_board.exception.NotFindUserException;
 import jproject.my_board.exception.NotUniqueNickNameException;
 import jproject.my_board.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -27,8 +26,20 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/member/loginform")
-    public String loginForm(){
+    public String loginForm(HttpServletRequest request){
         log.info("call loginForm");
+//        Object user = request.getSession().getAttribute("user");
+//        if(user != null){
+////            String message = "이미 로그인 하셧습니다.";
+////            request.setAttribute("message",message);
+////            String path = request.getServletPath();
+////            System.out.println("path = " + path);
+////            return "redirect:"+path;
+//
+//        }else{
+//            return "loginForm";
+//        }
+        //(무한루프 발생)....
         return "loginForm";
     }
     @GetMapping("/member/joinForm")

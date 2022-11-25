@@ -20,9 +20,15 @@
         </div>
       </div>
     </div>
+    <button th:if="${session.user.nickname == board.member.nickname}" class="btn btn-secondary btn-lg float-right mr-3 mt-3">
+        <a th:href="@{/board/modify/{id}(id = ${board.id})}">
+            수정!
+        </a>
+    </button>
   <div class="float-right pr-5 pt-5" th:text="${#temporals.format(board.create_at,'yyyy-MM-dd')}">
     작성날짜
   </div>
 </div>
 </body>
+
 </html>
