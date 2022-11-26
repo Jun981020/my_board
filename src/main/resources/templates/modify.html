@@ -8,7 +8,7 @@
 <div class="container w-75">
   <div th:replace="fragments/header :: nav" class="w-100"></div>
   <h2 class="text-center mt-5"> 게시글을 수정하세요! </h2>
-  <form action="/board/writeAction" method="post" >
+  <form th:action="@{/board/modifyAction/{id}(id = ${board.id})}" method="post" >
     <div class="form-group">
       <label for="exampleFormControlTextarea1">제목을 수정해주세요</label>
       <input type="text" class="form-group w-100" name="title"  th:value="${board.title}">

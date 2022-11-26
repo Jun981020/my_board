@@ -43,6 +43,8 @@ public class BoardService {
         oneBoard.setContent(board.getContent());
         oneBoard.setPrivate_content(board.getPrivate_content());
         oneBoard.setUpdate_at(LocalDateTime.now());
+        System.out.println("oneBoard = " + oneBoard);
+        System.out.println("board = " + board);
     }
 
     //게시글 번호의 memberNickname 조회
