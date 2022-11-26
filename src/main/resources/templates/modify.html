@@ -2,33 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header">
   <meta charset="UTF-8">
-  <title>Board_One</title>
+  <title>Modify</title>
 </head>
 <body>
 <div class="container w-75">
   <div th:replace="fragments/header :: nav" class="w-100"></div>
-  <h2 class="text-center mt-5 mb-5"><b>게시글 내용</b> </h2>
-  <div class="container">
-    <div class="d-flex flex-row-reverse">
-      작성자 : [[${user}]]
+  <h2 class="text-center mt-5"> 게시글을 수정하세요! </h2>
+  <form action="/board/writeAction" method="post" >
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">제목을 수정해주세요</label>
+      <input type="text" class="form-group w-100" name="title"  th:value="${board.title}">
     </div>
-    <div class="d-flex flex-column">
-      <div class="border p-2 text-center w-auto" th:text="${board.title}">
-      </div>
-      <div class="border p-2 w-auto" th:text="${board.content}" style="height:400px">
-        내용입니다.
-      </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">게시글을 수정해주세요</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"  th:text="${board.content}"></textarea>
     </div>
-  </div>
-  <button th:if="${session.user.nickname == board.member.nickname}" class="btn btn-secondary btn-lg float-right mr-3 mt-3">
-    <a th:href="@{/board/modify/{id}(id = ${board.id})}">
-      수정!
-    </a>
-  </button>
-  <div class="float-right pr-5 pt-5" th:text="${#temporals.format(board.create_at,'yyyy-MM-dd')}">
-    작성날짜
-  </div>
+    <select name="private_content" th:value="${board.private_content}">
+      <option value="0">공개</option>
+      <option value="1">비공개</option>
+    </select>
+    <button class="btn btn-secondary btn-lg float-right">수정!</button>
+  </form>
+
 </div>
 </body>
-
 </html>

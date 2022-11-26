@@ -40,5 +40,19 @@ class BoardServiceTest {
         list.stream().forEach(System.out::println);
         Assertions.assertThat(list.size()).isEqualTo(1);
     }
+//    @Test
+//    public void modifyTest(){
+//        Board board = new Board();
+//        board.setPrivate_content(1);
+//        board.setTitle("기존제목");
+//        board.setContent("기존내용");
+//        board.setCreate_at(LocalDateTime.now());
+//        boardService.insertContent(board);
+//
+//        board.setTitle("새로운제목");
+//        board.setContent("새로운내용");
+//        boardRepository.modify(1L,board);
+//        Assertions.assertThat(board.getTitle()).isEqualTo("새로운제목");
+//    }
 
 }

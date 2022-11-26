@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +32,17 @@ public class BoardService {
     }
     //게시글 하나 조회
     public Board getOneBoard(Long id){
-        Board one = boardRepository.findOne(id);
-        return one;
+        return boardRepository.findOne(id);
+    }
+
+    //게시글 수정
+    @Transactional
+    public void modify(Long id, Board board){
+        Board oneBoard = boardRepository.findOne(id);
+        oneBoard.setTitle(board.getTitle());
+        oneBoard.setContent(board.getContent());
+        oneBoard.setPrivate_content(board.getPrivate_content());
+        oneBoard.setUpdate_at(LocalDateTime.now());
     }
 
     //게시글 번호의 memberNickname 조회

@@ -84,6 +84,13 @@ public class BoardController {
         model.addAttribute("board",oneBoard);
         return  "modify";
     }
+    @PostMapping("/board/modifyAction/{id}")
+    public String modifyAction(@PathVariable("id") int id,Board board){
+        Long num = Long.valueOf(id);
+        log.info("id :" + num);
+        boardService.modify(num,board);
+        return "redirect:/board/main";
+    }
 
 
 

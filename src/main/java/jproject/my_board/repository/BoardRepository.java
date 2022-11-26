@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -29,4 +30,9 @@ public class BoardRepository {
     public String findMember(Long id){
         return findOne(id).getMember().getNickname();
     }
+    //게시글 수정
+//    public void modify(Long id,Board board){
+//        Board one = findOne(id);
+//        one.setContent(board.getContent());
+//    }
 }
