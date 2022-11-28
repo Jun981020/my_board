@@ -15,21 +15,30 @@
             로그인하지 않으셧네요ㅠㅠ...
         </span>
         <div class="d-flex flex-row justify-content-around mt-3 mb-5">
-                <button type="button" class="btn btn-primary p-2 btn-lg" style="width:170px" onclick="location.href='member/loginform'">
+            <a th:href="@{/member/loginform}">
+            <button type="button" class="btn btn-secondary p-2 btn-lg" style="width:170px">
                     로그인
-                </button>
-            <button type="button" class="btn btn-primary p-2 btn-lg" style="width:170px" onclick="location.href='member/joinForm'">
+            </button>
+            </a>
+            <a th:href="@{member/joinForm}">
+            <button type="button" class="btn btn-secondary p-2 btn-lg" style="width:170px">
                 회원가입
             </button>
+            </a>
         </div>
         <div class="d-flex flex-row justify-content-around mt-5">
-            <button type="button" class="btn btn-primary p-2 btn-lg" style="width:170px" onclick="location.href='/board/main'">
+            <a onclick="return check()">
+            <button type="button" class="btn btn-secondary p-2 btn-lg" style="width:170px">
                 게시판
             </button>
-            <button type="button" class="btn btn-primary p-2 btn-lg" style="width:170px" onclick="location.href='/member/logoutAction'">
+            </a>
+            <a th:href="@{/member/logoutAction}">
+            <button type="button" class="btn btn-secondary p-2 btn-lg" style="width:170px">
                 로그아웃
             </button>
+            </a>
         </div>
     </div>
 </body>
+
 </html>
