@@ -13,32 +13,24 @@
         </span>
         <span class="mt-5 mb-5 d-flex flex-row-reverse" th:if="${session.user == null}">
             로그인하지 않으셧네요ㅠㅠ...
+            
         </span>
         <div class="d-flex flex-row justify-content-around mt-3 mb-5">
-            <a th:href="@{/member/loginform}">
-            <button type="button" class="btn btn-secondary p-2 btn-lg" style="width:170px">
+            <button type="button" class="btn btn-secondary p-2 btn-lg" style="width:170px" onclick="location.href='member/loginform'">
                     로그인
             </button>
-            </a>
-            <a th:href="@{member/joinForm}">
-            <button type="button" class="btn btn-secondary p-2 btn-lg" style="width:170px">
+            <button type="button" class="btn btn-secondary p-2 btn-lg" style="width:170px" onclick="location.href='member/joinForm'">
                 회원가입
             </button>
-            </a>
         </div>
         <div class="d-flex flex-row justify-content-around mt-5">
-            <a onclick="return check()">
-            <button type="button" class="btn btn-secondary p-2 btn-lg" style="width:170px">
+            <button type="button" class="btn btn-secondary p-2 btn-lg" style="width:170px" onclick="location.href='/board/main'">
                 게시판
             </button>
-            </a>
-            <a th:href="@{/member/logoutAction}">
-            <button type="button" class="btn btn-secondary p-2 btn-lg" style="width:170px">
+            <button type="button" class="btn btn-secondary p-2 btn-lg" style="width:170px" onclick="location.href='/member/logoutAction'">
                 로그아웃
             </button>
-            </a>
         </div>
     </div>
 </body>
-
 </html>

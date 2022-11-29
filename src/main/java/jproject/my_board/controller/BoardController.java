@@ -71,6 +71,7 @@ public class BoardController {
         Long num = Long.valueOf(id);
         Board oneBoard = boardService.getOneBoard(num);
         model.addAttribute("board",oneBoard);
+        model.addAttribute("id",id);
         String user = boardService.getOneMemberNicknameOfBoardId(num);
         model.addAttribute("user",user);
         log.info("call board_one");

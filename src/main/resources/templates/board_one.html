@@ -6,32 +6,51 @@
 </head>
 <body>
 <div class="container w-75">
-    <div th:replace="fragments/header :: nav" class="w-100"></div>
-    <h2 class="text-center mt-5 mb-5"><b>게시글 내용</b> </h2>
-  <div class="container">
-    <div class="d-flex flex-row-reverse">
-        작성자 : [[${user}]]
-    </div>
-    <div class="d-flex flex-column">
-        <div class="border p-2 text-center w-auto" th:text="${board.title}">
+        <div th:replace="fragments/header :: nav" class="w-100"></div>
+        <h2 class="text-center mt-5 mb-5"><b>게시글 내용</b> </h2>
+        <div class="container">
+            <div class="d-flex flex-row-reverse">
+                작성자 : [[${user}]]
+            </div>
+            <div class="d-flex flex-column">
+                <div class="border p-2 text-center w-auto" th:text="${board.title}">
+                </div>
+                <div class="border p-2 w-auto" th:text="${board.content}" style="height:400px">
+                  내용입니다.
+                </div>
+            </div>
         </div>
-        <div class="border p-2 w-auto" th:text="${board.content}" style="height:400px">
-          내용입니다.
+        <div class="container d-flex flex-column">
+            <a th:href="@{/board/modify/{id}(id = ${board.id})}" id="title">
+                <button th:if="${session.user.nickname == board.member.nickname}" class="btn btn-secondary btn-lg float-right mt-3">
+                        수정!
+                </button>
+            </a>
+            <div class="float-left mt-4 mr-2 pb-2">
+                <span th:text="${#temporals.format(board.create_at,'yyyy-MM-dd')}"></span>
+            </div>
+            <form class="d-flex" action="/new_reply" method="post">
+                <input type="hidden" name="nickname" th:value="${session.user.nickname}">
+                <input type="hidden" name="id" th:value="${id}">
+                <div class="card mb-2 w-100">
+                <div class="card-header bg-light">
+                    <i class="fa fa-comment fa"></i> 댓글쓰기
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="form-inline mb-2" th:text="${session.user.nickname}">
+                            </div>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"></textarea>
+                            <button type="submit" class="btn btn-dark mt-3 float-right">댓글 등록</button>
+                        </li>
+                    </ul>
+                </div>
+              </div>
+            </form>
         </div>
-      </div>
-    </div>
-    <a th:href="@{/board/modify/{id}(id = ${board.id})}" id="title">
-    <button th:if="${session.user.nickname == board.member.nickname}" class="btn btn-secondary btn-lg float-right mr-3 mt-3">
-            수정!
-    </button>
-    </a>
-  <div class="float-right pr-5 pt-5" th:text="${#temporals.format(board.create_at,'yyyy-MM-dd')}">
-    작성날짜
-  </div>
+
 </div>
 </body>
-<script>
-
-</script>
 
 </html>

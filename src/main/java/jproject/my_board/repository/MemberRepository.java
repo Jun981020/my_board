@@ -36,5 +36,10 @@ public class MemberRepository {
                 .setParameter("name",name)
                 .getResultList();
    }
+   public Member findByNicknameOne(String name){
+        return em.createQuery("select m from Member m where m.nickname = :name",Member.class)
+                .setParameter("name",name)
+                .getSingleResult();
+   }
 
 }

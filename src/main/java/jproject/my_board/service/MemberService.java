@@ -38,5 +38,8 @@ public class MemberService {
         }
     }
 
+    public Member oneMemberByName(String name){
+        return memberRepository.findByNicknameOne(name);
+    }
 
 }
