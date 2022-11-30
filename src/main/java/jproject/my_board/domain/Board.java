@@ -5,6 +5,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -14,7 +16,6 @@ import java.time.LocalDateTime;
 public class Board {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "board_id")
     private Long id;
 
     @NotNull
@@ -29,17 +30,26 @@ public class Board {
     @NotNull
     private Member member;
 
+    @OneToMany(mappedBy = "board")
+    private List<Reply> replies = new ArrayList<>();
 
-    @Override
-    public String toString() {
-        return "Board{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", create_at=" + create_at +
-                ", update_at=" + update_at +
-                ", private_content=" + private_content +
-                ", member=" + member +
-                '}';
-    }
+//    public void addReplies(Reply reply){
+//        replies.add(reply);
+//        reply.setBoard(this);
+//    }
+
+
+//    @Override
+//    public String toString() {
+//        return "Board{" +
+//                "id=" + id +
+//                ", title='" + title + '\'' +
+//                ", content='" + content + '\'' +
+//                ", create_at=" + create_at +
+//                ", update_at=" + update_at +
+//                ", private_content=" + private_content +
+//                ", member=" + member +
+//                ", replies=" + replies +
+//                '}';
+//    }
 }

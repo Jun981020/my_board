@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Reply {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "reply_id")
     private Long id;
 
     private String content;
@@ -22,4 +23,24 @@ public class Reply {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "BOARD_ID")
+    private Board board;
+
+    public void setBoard(Board board){
+        this.board = board;
+        board.getReplies().add(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Reply{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", create_at=" + create_at +
+                ", member=" + member +
+                ", board=" + board +
+                '}';
+    }
 }

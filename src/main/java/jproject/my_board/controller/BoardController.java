@@ -4,6 +4,7 @@ import jproject.my_board.domain.Board;
 import jproject.my_board.domain.Member;
 import jproject.my_board.exception.SessionEmptyException;
 import jproject.my_board.service.BoardService;
+import jproject.my_board.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

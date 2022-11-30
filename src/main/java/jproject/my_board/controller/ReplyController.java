@@ -1,9 +1,11 @@
 package jproject.my_board.controller;
 
+import jproject.my_board.domain.Board;
 import jproject.my_board.domain.Member;
 import jproject.my_board.domain.Reply;
 import jproject.my_board.repository.MemberRepository;
 import jproject.my_board.repository.ReplyRepository;
+import jproject.my_board.service.BoardService;
 import jproject.my_board.service.MemberService;
 import jproject.my_board.service.ReplyService;
 import lombok.RequiredArgsConstructor;
@@ -22,14 +24,11 @@ public class ReplyController {
 
     private final ReplyService replyService;
     private final MemberService memberService;
+    private final BoardService boardService;
     @PostMapping("/new_reply")
     public String new_reply(@ModelAttribute ReplyForm form, int id){
         log.info("call new_reply");
-        Reply reply = new Reply();
-        reply.setContent(form.getContent());
-        reply.setCreate_at(LocalDateTime.now());
-        reply.setMember(memberService.oneMemberByName(form.getNickname()));
-        replyService.insertReply(reply);
+        replyService.insertReply(form);
         return "redirect:/board/board_one/"+id;
     }
 }

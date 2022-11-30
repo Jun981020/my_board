@@ -29,9 +29,4 @@ public class BoardRepository {
     public String findMember(Long id){
         return findOne(id).getMember().getNickname();
     }
-    //게시글 수정
-//    public void modify(Long id,Board board){
-//        Board one = findOne(id);
-//        one.setContent(board.getContent());
-//    }
 }

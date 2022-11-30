@@ -26,12 +26,13 @@
                         수정!
                 </button>
             </a>
-            <div class="float-left mt-4 mr-2 pb-2">
+            <div class="d-flex justify-content-end mt-2 mb-5">
                 <span th:text="${#temporals.format(board.create_at,'yyyy-MM-dd')}"></span>
             </div>
             <form class="d-flex" action="/new_reply" method="post">
                 <input type="hidden" name="nickname" th:value="${session.user.nickname}">
                 <input type="hidden" name="id" th:value="${id}">
+                <input type="hidden" name="board_id" th:value="${board.id}">
                 <div class="card mb-2 w-100">
                 <div class="card-header bg-light">
                     <i class="fa fa-comment fa"></i> 댓글쓰기
@@ -48,8 +49,26 @@
                 </div>
               </div>
             </form>
+            <div class="container border mt-2 ">
+                <div th:each="reply:${board.replies}">
+                    <div class="d-flex flex-row">
+                        <img src="/image/user_image.png" alt="" style="width: 36px; height: 36px; border-radius: 3em;" class="ml-2 mt-5 mr-2 mb-2">
+                        <div class="mt-5" th:text="${reply.member.nickname}">
+                            작성자
+                        </div>
+                    </div>
+                    <div class="flex flex-column">
+                        <textarea class="w-100" th:text="${reply.content}">
+                                내용을 입력해주세요
+                        </textarea>
+                        <div class="d-flex justify-content-end" th:text="${#temporals.format(reply.create_at,'yyyy-MM-dd')}">
+                            작성날짜
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
         </div>
-
 </div>
 </body>
 

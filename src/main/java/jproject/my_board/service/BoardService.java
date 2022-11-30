@@ -1,6 +1,7 @@
 package jproject.my_board.service;
 
 import jproject.my_board.domain.Board;
+import jproject.my_board.domain.Reply;
 import jproject.my_board.dto.BoardDto;
 import jproject.my_board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -51,4 +52,5 @@ public class BoardService {
     public String getOneMemberNicknameOfBoardId(Long id){
         return boardRepository.findMember(id);
     }
+
 }
