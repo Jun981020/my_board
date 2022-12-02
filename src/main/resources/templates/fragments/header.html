@@ -21,8 +21,11 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/main">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" th:if="${session.user == null}">
                     <a class="nav-link" href="/member/loginform">Login</a>
+                </li>
+                <li class="nav-item" th:unless="${session.user == null}">
+                    <a class="nav-link" href="/member/mypage">MyPage</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/board/main">BoardList</a>

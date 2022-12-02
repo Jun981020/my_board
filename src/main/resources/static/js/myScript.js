@@ -5,6 +5,5 @@ function check(){
 //    }else{
 //      return location.href = '/board/main';
 //    }
-    alert("")
 };
 

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -23,10 +22,6 @@ public class ReplyService {
     private final MemberRepository memberRepository;
     private final BoardRepository boardRepository;
 
-//    @Transactional
-//    public void insertReply(Reply reply){
-//        replyRepository.add(reply);
-//    }
     @Transactional
     public void insertReply(ReplyForm form){
         Member m = memberRepository.findByNicknameOne(form.getNickname());

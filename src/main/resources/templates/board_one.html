@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="flex flex-column">
-                        <textarea class="w-100" th:text="${reply.content}">
+                        <textarea class="w-100" th:text="${reply.content}" readonly="true">
                                 내용을 입력해주세요
                         </textarea>
                         <div class="d-flex justify-content-end" th:text="${#temporals.format(reply.create_at,'yyyy-MM-dd')}">

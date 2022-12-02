@@ -23,7 +23,7 @@
         <td>
           <a
              th:href="@{/board/board_one/{id}(id = ${item.id})}"
-             th:text="${item.title}">
+             th:text="${item.title}" onclick="return checkLogin()">
             카테고리
           </a>
         </td>
@@ -33,10 +33,20 @@
       </tr>
     </table>
   </div>
-  <div th:text="${fail}"  style="color:red" class="text-center"></div>
+  <div th:text="${fail}"  style="color:red" class="text-center" id="error"></div>
   <button class="btn btn-secondary btn-lg float-right" onclick="location.href='/board/write'">게시글 작성</button>
 </div>
 </body>
+<script th:inline="javascript">
+  function checkLogin(){
+    const user  = [[${session.user}]];
+    if(user == null){
+      alert("로그인먼저 해주세요");
+      location.href='/member/loginform';
+      return false;
+    }
+  }
+</script>
 
 
 </html>

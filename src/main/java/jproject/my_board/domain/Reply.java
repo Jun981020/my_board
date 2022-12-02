@@ -3,14 +3,11 @@ package jproject.my_board.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Reply {
@@ -31,6 +28,22 @@ public class Reply {
     public void setBoard(Board board){
         this.board = board;
         board.getReplies().add(this);
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setCreate_at(LocalDateTime create_at) {
+        this.create_at = create_at;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
     }
 
     @Override
