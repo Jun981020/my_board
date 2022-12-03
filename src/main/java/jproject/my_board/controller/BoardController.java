@@ -93,6 +93,13 @@ public class BoardController {
         boardService.modify(num,board);
         return "redirect:/board/main";
     }
+    @PostMapping("/board/deleteAction/{id}")
+    public String deleteAction(@PathVariable("id") int id){
+        log.info("call delete action");
+        Long num = (long) id;
+        boardService.delete(num);
+        return "redirect:/board/main";
+    }
 
 
 

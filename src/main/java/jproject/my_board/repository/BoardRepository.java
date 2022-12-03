@@ -29,4 +29,8 @@ public class BoardRepository {
     public String findMember(Long id){
         return findOne(id).getMember().getNickname();
     }
+    //게시글 삭제
+    public void remove(Board board){
+        em.remove(board);
+    }
 }

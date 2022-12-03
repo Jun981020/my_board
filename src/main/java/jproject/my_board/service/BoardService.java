@@ -53,4 +53,12 @@ public class BoardService {
         return boardRepository.findMember(id);
     }
 
+    //게시글 삭제
+    @Transactional
+    public void delete(Long id){
+        Board one = boardRepository.findOne(id);
+        boardRepository.remove(one);
+    }
+
+
 }
