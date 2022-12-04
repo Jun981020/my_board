@@ -21,7 +21,7 @@
       <option value="0">공개</option>
       <option value="1">비공개</option>
     </select>
-    <button class="btn btn-outline-danger btn-lg float-right ml-4 mt-4 mb-4" type="submit" th:href="@{/board/deleteAction/{id}(id = ${board.id})}">삭제!</button>
+    <button class="btn btn-outline-danger btn-lg float-right ml-4 mt-4 mb-4" type="button" th:href="@{/board/deleteAction/{id}(id = ${board.id})}">삭제!</button>
     <button class="btn btn-outline-secondary btn-lg float-right m-4">수정!</button>
   </form>
 

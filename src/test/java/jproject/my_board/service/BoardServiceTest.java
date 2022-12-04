@@ -55,4 +55,20 @@ class BoardServiceTest {
 //        Assertions.assertThat(board.getTitle()).isEqualTo("새로운제목");
 //    }
 
+    @Test
+    public void delete(){
+        Member member = new Member();
+        member.setNickname("주녕");
+        memberService.join(member);
+        Board board1 = new Board();
+        board1.setTitle("제목입니다.");
+        board1.setContent("내용입니다.");
+        board1.setPrivate_content(0);
+        board1.setCreate_at(LocalDateTime.now());
+        boardRepository.save(board1);
+        boardRepository.remove(board1);
+        Board one = boardRepository.findOne(board1.getId());
+        Assertions.assertThat(one).isNull();
+
+    }
 }

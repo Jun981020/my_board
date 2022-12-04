@@ -53,20 +53,7 @@ class BoardRepositoryTest {
 //        Board one = boardRepository.findOne(save);
 //        Assertions.assertThat(board).isSameAs(one);
     }
-    @Test
-    public void delete(){
-        Member member = new Member();
-        member.setNickname("주녕");
-        Board board1 = new Board();
-        board1.setTitle("제목입니다.");
-        board1.setContent("내용입니다.");
-        board1.setPrivate_content(0);
-        board1.setCreate_at(LocalDateTime.now());
-        boardRepository.remove(board1);
-        Board one = boardRepository.findOne(board1.getId());
-        System.out.println("one = " + one);
 
-    }
 
 
 
