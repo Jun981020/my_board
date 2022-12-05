@@ -30,7 +30,7 @@ public class Board {
     @NotNull
     private Member member;
 
-    @OneToMany(mappedBy = "board")
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
     private List<Reply> replies = new ArrayList<>();
 
 //    public void addReplies(Reply reply){

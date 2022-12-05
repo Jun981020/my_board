@@ -8,7 +8,7 @@
 <div class="container w-75">
   <div th:replace="fragments/header :: nav" class="w-100"></div>
   <h2 class="text-center mt-5"> 게시글을 수정하세요! </h2>
-  <form th:action="@{/board/modifyAction/{id}(id = ${board.id})}" method="post" >
+  <form method="post" name="frm" >
     <div class="form-group">
       <label for="exampleFormControlTextarea1">제목을 수정해주세요</label>
       <input type="text" class="form-group w-100" name="title"  th:value="${board.title}">
@@ -21,10 +21,19 @@
       <option value="0">공개</option>
       <option value="1">비공개</option>
     </select>
-    <button class="btn btn-outline-danger btn-lg float-right ml-4 mt-4 mb-4" type="button" th:href="@{/board/deleteAction/{id}(id = ${board.id})}">삭제!</button>
-    <button class="btn btn-outline-secondary btn-lg float-right m-4">수정!</button>
+    <button class="btn btn-outline-danger btn-lg float-right ml-4 mt-4 mb-4" onclick="btn_click('delete')">삭제!</button>
+    <button class="btn btn-outline-secondary btn-lg float-right m-4" onclick="btn_click('update')">수정!</button>
   </form>
-
 </div>
 </body>
+<script th:inline="javascript">
+  let id = [[${board.id}]];
+  function btn_click(str){
+    if(str == 'update'){
+      frm.action = "/board/modifyAction/"+id;
+    }else{
+      frm.action = "/board/deleteAction/"+id;
+    }
+  }
+</script>
 </html>
