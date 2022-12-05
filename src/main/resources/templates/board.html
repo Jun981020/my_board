@@ -21,10 +21,14 @@
         <td th:text="${item.id}"></td>
         <td th:text="${item.member.nickname}"></td>
         <td>
-          <a
+          <a th:if="${item.private_content == 1}"
+             th:href="@{/board/board_one/{id}(id = ${item.id})}"
+             th:text="${item.title}" onclick="return checkLogin()"
+             data-toggle="modal" data-target="#exampleModalCenter">
+          </a>
+          <a th:unless="${item.private_content == 1}"
              th:href="@{/board/board_one/{id}(id = ${item.id})}"
              th:text="${item.title}" onclick="return checkLogin()">
-            카테고리
           </a>
         </td>
         <td th:text="${#temporals.format(item.create_at,'yyyy-MM-dd')}"></td>
@@ -35,6 +39,27 @@
   </div>
   <div th:text="${fail}"  style="color:red" class="text-center" id="error"></div>
   <button class="btn btn-secondary btn-lg float-right" onclick="location.href='/board/write'">게시글 작성</button>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-center">
+          <h5 class="modal-title" id="exampleModalLongTitle">비밀글입니다.</h5>
+        </div>
+        <form method="post" action="/board/check_private_content">
+        <div class="modal-body d-flex justify-content-center">
+          <input type="password" name="password" class="w-75">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+          <button lass="btn btn-primary">확인</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 </body>
 <script th:inline="javascript">
