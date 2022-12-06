@@ -4,7 +4,7 @@ import jproject.my_board.domain.Board;
 import jproject.my_board.domain.Member;
 import jproject.my_board.exception.SessionEmptyException;
 import jproject.my_board.service.BoardService;
-import jproject.my_board.service.ReplyService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -60,6 +60,9 @@ public class BoardController {
         board.setMember(m);
         board.setPrivate_content(form.getPrivate_content());
         board.setCreate_at(LocalDateTime.now());
+        if(!form.getPrivate_content_password().isEmpty()){
+            board.setPrivate_content_password(form.getPrivate_content_password());
+        }
         boardService.insertContent(board);
         log.info("call board/writeAction");
         return "redirect:/board/main";
@@ -97,7 +100,12 @@ public class BoardController {
         boardService.delete(num);
         return "redirect:/board/main";
     }
-
+    @GetMapping("/board/check_private_content")
+    @ResponseBody
+    public int checkPassword(@RequestParam("password")String password){
+        log.info("call checkPassword");
+        return boardService.checkPassword(password,3L);
+    }
 
 
 }

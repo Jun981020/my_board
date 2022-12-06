@@ -16,4 +16,5 @@ public class BoardForm {
     private String content;
     private Member member;
     private int private_content;
+    private String private_content_password;
 }

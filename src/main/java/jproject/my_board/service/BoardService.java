@@ -59,6 +59,13 @@ public class BoardService {
         Board one = boardRepository.findOne(id);
         boardRepository.remove(one);
     }
-
+    public int checkPassword(String ps,Long id){
+        Board one = boardRepository.findOne(id);
+        if(one.getPrivate_content_password().equals(ps)){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
 
 }

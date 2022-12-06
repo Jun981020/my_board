@@ -33,6 +33,8 @@ public class Board {
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
     private List<Reply> replies = new ArrayList<>();
 
+    private String private_content_password;
+
 //    public void addReplies(Reply reply){
 //        replies.add(reply);
 //        reply.setBoard(this);

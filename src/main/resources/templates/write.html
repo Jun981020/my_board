@@ -17,13 +17,23 @@
     <label for="exampleFormControlTextarea1">게시글을 작성해주세요!</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"></textarea>
   </div>
-  <select name="private_content">
+  <select name="private_content" id="private_content" onchange="checking()">
     <option value="0">공개</option>
     <option value="1">비공개</option>
   </select>
+    <input type="hidden" placeholder="비밀번호를 입력하세요" class="ml-4" id="private_content_password" maxlength="4" name="private_content_password">
   <button class="btn btn-secondary btn-lg float-right">작성!</button>
   </form>
 
 </div>
 </body>
+<script type="text/javascript">
+    function checking(){
+        if(private_content.value == 1){
+            $('#private_content_password').attr('type','text');
+        }else{
+            $('#private_content_password').attr('type','hidden');
+        }
+    }
+</script>
 </html>

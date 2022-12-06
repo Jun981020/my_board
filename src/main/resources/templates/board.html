@@ -48,13 +48,13 @@
         <div class="modal-header d-flex justify-content-center">
           <h5 class="modal-title" id="exampleModalLongTitle">비밀글입니다.</h5>
         </div>
-        <form method="post" action="/board/check_private_content">
+        <form method="get" action="/board/check_private_content">
         <div class="modal-body d-flex justify-content-center">
-          <input type="password" name="password" class="w-75">
+          <input type="password" name="password" class="w-75" id="password">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-          <button lass="btn btn-primary">확인</button>
+          <button class="btn btn-primary">확인</button>
         </div>
         </form>
       </div>
@@ -71,6 +71,31 @@
       return false;
     }
   }
+
+    $(document).ready(function(){
+        $("#shoot").click(checking_ps);
+    });
+    function checking_ps(){
+        var params = {
+<!--            board_id : $("#board_id").val(),-->
+            password : $("#password").val()
+        }
+<!--        let password = $("#password").val();-->
+        $.ajax({
+            type : "GET",
+            url : "/board/check_private_content",
+            data : params,
+            success : function(res){
+                console.log("통신성공 , res :"+ res);
+                if(res <= 1){
+
+                }
+            },
+            error : function(res){
+                alert("통신실패")
+            }
+        })
+    }
 </script>
 
 

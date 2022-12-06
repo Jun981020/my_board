@@ -69,6 +69,23 @@ class BoardServiceTest {
         boardRepository.remove(board1);
         Board one = boardRepository.findOne(board1.getId());
         Assertions.assertThat(one).isNull();
+    }
+    @Test
+    public void board_password_check(){
+        Member member = new Member();
+        member.setNickname("ppqpqp");
+        member.setPassword("12345");
+        memberService.join(member);
+        Board board = new Board();
+        board.setTitle("제목");
+        board.setTitle("내용");
+        board.setMember(member);
+        board.setPrivate_content_password("6796");
+        boardService.insertContent(board);
+        String ps = "6796";
+        Board findBoard = boardService.getOneBoard(board.getId());
+        String pcpws = findBoard.getPrivate_content_password();
+        Assertions.assertThat(ps).isSameAs(pcpws);
 
     }
 }
