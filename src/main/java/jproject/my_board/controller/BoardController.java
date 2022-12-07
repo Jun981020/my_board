@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Slf4j
@@ -100,11 +101,18 @@ public class BoardController {
         boardService.delete(num);
         return "redirect:/board/main";
     }
-    @GetMapping("/board/check_private_content")
+    @PostMapping("/board/check_private_content")
     @ResponseBody
-    public int checkPassword(@RequestParam("password")String password){
+    public boolean checkPassword(@RequestParam Map<String,Object> params, Model model){
         log.info("call checkPassword");
-        return boardService.checkPassword(password,3L);
+        String password = params.get("password").toString();
+        Long board_id = Long.valueOf(params.get("board").toString());
+        int result = boardService.checkPassword(params.get("password").toString(), board_id);
+        if(result == 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 

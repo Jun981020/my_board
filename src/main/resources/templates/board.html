@@ -18,17 +18,21 @@
         <td>공개&비밀</td>
       </tr>
       <tr th:each="item:${list}">
-        <td th:text="${item.id}"></td>
+        <td th:text="${item.id}" id="board_id"></td>
         <td th:text="${item.member.nickname}"></td>
         <td>
           <a th:if="${item.private_content == 1}"
              th:href="@{/board/board_one/{id}(id = ${item.id})}"
-             th:text="${item.title}" onclick="return checkLogin()"
+             th:id="${item.id}"
+             th:text="${item.title}" onclick="checkLogin(); getId(this.getAttribute('id'));"
+             class="title"
              data-toggle="modal" data-target="#exampleModalCenter">
           </a>
           <a th:unless="${item.private_content == 1}"
              th:href="@{/board/board_one/{id}(id = ${item.id})}"
-             th:text="${item.title}" onclick="return checkLogin()">
+             th:text="${item.title}" onclick="return checkLogin();"
+             class="title"
+          >
           </a>
         </td>
         <td th:text="${#temporals.format(item.create_at,'yyyy-MM-dd')}"></td>
@@ -39,7 +43,7 @@
   </div>
   <div th:text="${fail}"  style="color:red" class="text-center" id="error"></div>
   <button class="btn btn-secondary btn-lg float-right" onclick="location.href='/board/write'">게시글 작성</button>
-
+  </div>
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -48,15 +52,15 @@
         <div class="modal-header d-flex justify-content-center">
           <h5 class="modal-title" id="exampleModalLongTitle">비밀글입니다.</h5>
         </div>
-        <form method="get" action="/board/check_private_content">
+<!--        <form method="post" action="/board/check_private_content">-->
         <div class="modal-body d-flex justify-content-center">
           <input type="password" name="password" class="w-75" id="password">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-          <button class="btn btn-primary">확인</button>
+          <button class="btn btn-primary" id="shoot">확인</button>
         </div>
-        </form>
+<!--        </form>-->
       </div>
     </div>
   </div>
@@ -75,27 +79,28 @@
     $(document).ready(function(){
         $("#shoot").click(checking_ps);
     });
+
+    var num;
+    function getId(data){
+      num = data;
+    }
+
     function checking_ps(){
         var params = {
-<!--            board_id : $("#board_id").val(),-->
-            password : $("#password").val()
+            password : $("#password").val(),
+            board : num
         }
-<!--        let password = $("#password").val();-->
-        $.ajax({
-            type : "GET",
-            url : "/board/check_private_content",
-            data : params,
-            success : function(res){
-                console.log("통신성공 , res :"+ res);
-                if(res <= 1){
 
-                }
-            },
-            error : function(res){
-                alert("통신실패")
-            }
+        $.ajax({
+        url : "/board/check_private_content",
+        data : params,
+        type : "POST"
         })
+        .done(function (req) {
+          alert(req);
+        });
     }
+
 </script>
 
 

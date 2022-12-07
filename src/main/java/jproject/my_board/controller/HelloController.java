@@ -18,7 +18,6 @@ public class HelloController {
         log.info("call main");
         return "main";
     }
-
     @GetMapping("board")
     public String board(){
         log.info("call board");
