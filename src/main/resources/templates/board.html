@@ -97,7 +97,12 @@
         type : "POST"
         })
         .done(function (req) {
-          alert(req);
+          if(req){
+            location.href = "/board/board_one/"+num;
+          }else{
+             $("#password").val('');
+             $("#password").attr("placeholder","비밀번호가 틀립니다.");
+          }
         });
     }
 
