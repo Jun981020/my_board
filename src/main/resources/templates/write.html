@@ -8,7 +8,7 @@
 <div class="container w-75">
   <div th:replace="fragments/header :: nav" class="w-100"></div>
   <h2 class="text-center mt-5"> 게시글을 작성하세요! </h2>
-  <form action="/board/writeAction" method="post" >
+  <form action="/board/writeAction" method="post" onsubmit="return nepCheck();">
   <div class="form-group">
     <label for="exampleFormControlTextarea1">제목을 입력해주세요</label>
     <input type="text" class="form-group w-100" name="title" >
@@ -34,6 +34,13 @@
         }else{
             $('#private_content_password').attr('type','hidden');
         }
+    }
+    function nepCheck(){
+      if($("#private_content_password").val() == 0){
+        alert("비공개 글은 비밀번호를 입력해야 합니다.");
+        $("#private_content_password").focus();
+        return false;
+      }
     }
 </script>
 </html>
