@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -19,6 +20,8 @@ public class Member {
     @Column(unique = true)
     private String nickname;
     private String password;
+
+    private LocalDateTime join_date;
     //우선은 단반향 매핑으로 member 객체에서 boards를 알필요는 없다 판단.
 //    @OneToMany(mappedBy = "member")
 //    private List<Board> boards = new ArrayList<>();

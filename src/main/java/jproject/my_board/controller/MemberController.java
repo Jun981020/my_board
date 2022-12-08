@@ -7,6 +7,7 @@ import jproject.my_board.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,6 +59,7 @@ public class MemberController {
             Member m = new Member();
             m.setNickname(form.getNickname());
             m.setPassword(form.getPassword());
+            m.setJoin_date(form.getJoin_date());
             memberService.join(m);
             return "redirect:/main";
         }
@@ -104,6 +106,10 @@ public class MemberController {
         HttpSession session = request.getSession();
         session.invalidate();
         return "redirect:/main";
+    }
+    @GetMapping("/member/mypage")
+    public String myPage(Model model){
+        return "mypage";
     }
 
 }
