@@ -40,4 +40,6 @@
 
 <h2>DataBase</h2>
     h2 database 선택
-Using
+<h2>JDBC</h2>
+1.Persistence framework 를 JPA로 선택 
+2.Spring DATA JPA 를 활용해 데이터베이스 관점이 아닌 객체관점으로 설계
