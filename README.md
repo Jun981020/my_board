@@ -1,4 +1,5 @@
 # my_board
+Spring Boot & JPA 를 활용한 간단한 게시판 만들기
 
 <h2>Description</h2>
 <ul>
@@ -40,6 +41,7 @@
 
 <h2>DataBase</h2>
     h2 database 선택
-<h2>JDBC</h2>
+<h2>ORM</h2>
 1.Persistence framework 를 JPA로 선택 <br>
-2.Spring DATA JPA 를 활용해 데이터베이스 관점이 아닌 객체관점으로 설계
+2.JPA 를 활용해 데이터베이스 관점이 아닌 객체관점으로 설계
+3.Spring Data JPA 없이 순수 JPA만 사용
