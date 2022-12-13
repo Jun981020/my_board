@@ -45,3 +45,8 @@ Spring Boot & JPA 를 활용한 간단한 게시판 만들기
 1.Persistence framework 를 JPA로 선택 <br>
 2.JPA 를 활용해 데이터베이스 관점이 아닌 객체관점으로 설계
 3.Spring Data JPA 없이 순수 JPA만 사용
+
+<h1>Version1.0완료</h1>
+<h3>추가가능한기능</h3>
+1.Spring security 기능추가
+2.관리자기능 
