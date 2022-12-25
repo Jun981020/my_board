@@ -14,5 +14,6 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .formLogin().disable().build();
+
     }
 }

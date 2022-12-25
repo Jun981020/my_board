@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Reply {
+public class Reply extends BaseTimeEntity{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reply_id")
     private Long id;
