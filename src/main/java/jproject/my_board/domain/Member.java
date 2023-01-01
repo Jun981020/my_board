@@ -25,6 +25,7 @@ public class Member {
     //우선은 단반향 매핑으로 member 객체에서 boards를 알필요는 없다 판단.
 //    @OneToMany(mappedBy = "member")
 //    private List<Board> boards = new ArrayList<>();
+    private Role role;
 
     @Override
     public String toString() {
@@ -32,6 +33,8 @@ public class Member {
                 "id=" + id +
                 ", nickname='" + nickname + '\'' +
                 ", password='" + password + '\'' +
+                ", join_date=" + join_date +
+                ", role=" + role +
                 '}';
     }
 }
