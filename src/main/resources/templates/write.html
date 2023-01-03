@@ -36,11 +36,13 @@
         }
     }
     function nepCheck(){
-      if($("#private_content_password").val() == 0){
+
+      if($("#private_content_password").val() == 0 && private_content.value == 1){
         alert("비공개 글은 비밀번호를 입력해야 합니다.");
         $("#private_content_password").focus();
         return false;
       }
+
     }
 </script>
 </html>

@@ -13,7 +13,7 @@ public class HelloController {
 
     private final MemberService memberService;
 
-    @GetMapping("main")
+    @GetMapping(value = {"main","/"})
     public String main(){
         log.info("call main");
         return "main";
