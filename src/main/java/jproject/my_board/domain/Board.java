@@ -30,7 +30,7 @@ public class Board {
     @NotNull
     private Member member;
 
-    //Builder.Default
+    //Builder.Default.
     @Builder.Default
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
     private List<Reply> replies = new ArrayList<>();
