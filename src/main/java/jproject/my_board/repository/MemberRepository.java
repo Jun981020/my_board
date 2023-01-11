@@ -5,17 +5,24 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
 public class MemberRepository {
 
+    @PersistenceContext
     private final EntityManager em;
 
     //회원가입
     public void save(Member m){
         em.persist(m);
+    }
+
+    //데이터 전체 삭제
+    public void delete(){
+        em.createQuery("delete from Member");
     }
 
     //회원 하나 조회

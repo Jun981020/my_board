@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 @Getter
 @Setter
@@ -17,4 +18,5 @@ public class BoardDto {
     private String board_title;
     private LocalDateTime board_create_at;
     private int private_content;
+
 }

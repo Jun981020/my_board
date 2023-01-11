@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -32,12 +33,20 @@ class MemberServiceTest {
 
     @Test
     public void login(){
+        memberRepository.delete();
         Member m = new Member();
-        m.setId(1L);
         m.setNickname("qwer");
         m.setPassword("1234");
-        Member getMember = memberRepository.checkUser(m);
-        assertThat(m.getNickname()).isEqualTo(getMember.getNickname());
+        assertThrows(EmptyResultDataAccessException.class,() ->
+                        memberRepository.checkUser(m)
+                );
+
+//        Member m1 = new Member();
+//        m1.setId(1L);
+//        m1.setNickname("qwer");
+//        m1.setPassword("1234");
+//        Member getMember1 = memberRepository.checkUser(m1);
+//        assertThat(m1.getNickname()).isEqualTo(getMember1.getNickname());
     }
     @Test
     public void checkSameNickName(){
