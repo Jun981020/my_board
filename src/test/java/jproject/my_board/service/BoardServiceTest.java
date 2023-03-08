@@ -85,7 +85,7 @@ class BoardServiceTest {
         String ps = "6796";
         Board findBoard = boardService.getOneBoard(board.getId());
         String pcpws = findBoard.getPrivate_content_password();
-        Assertions.assertThat(ps).isSameAs(pcpws);
+        Assertions.assertThat(ps).isEqualTo(pcpws);
 
     }
 }
